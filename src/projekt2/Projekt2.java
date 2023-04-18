@@ -47,7 +47,7 @@ public class Projekt2 {
     static String[] menu(String[] data){        
         Scanner scan = new Scanner(System.in);
         
-        System.out.println("Choose number followed by enter.");
+        System.out.println("Choose a number between 1 and 7 followed by enter.");
         System.out.println("[1] Book");
         System.out.println("[2] Unbook");
         System.out.println("[3] Find booking");
@@ -56,9 +56,11 @@ public class Projekt2 {
         System.out.println("[6] Show profit");
         System.out.println("[7] Exit");
         
-        int input = scan.nextInt();
-        
-        switch (input){
+        int input;
+        try{
+            input = scan.nextInt();
+            
+            switch (input){
             case 1 -> createBooking(data);
             case 2 -> createUnbooking(data);
             case 3 -> searchBooking(data);
@@ -66,6 +68,9 @@ public class Projekt2 {
             case 5 -> showUnbookedSeats(getUnbookedSeats(data, 1));
             case 6 -> showProfit(data);
             case 7 -> System.exit(0);
+            }
+        } catch(Exception e){
+            System.out.println("You can only use numbers.");
         }
         return menu(data);
     }
@@ -445,9 +450,7 @@ public class Projekt2 {
         try{
             pn = scan.nextInt();
             String personalnumber = Integer.toString(pn);
-            if(personalnumber.length() == 8 && 
-                    pn > 19000000 &&
-                    pn < 20230408){
+            if(personalnumber.length() == 8 &&  pn > 19000000 && pn < 20230408){
                 // Todo check if the input is only numbers
                 return personalnumber;
             }
